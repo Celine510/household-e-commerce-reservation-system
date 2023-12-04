@@ -192,7 +192,7 @@ body {
   display: block;
   text-decoration: none;
   color: #000000;
-  font-size: 1.25rem;
+  font-size: 1rem;
 }
 
 .topBar a:hover {
@@ -249,7 +249,7 @@ body {
   .topBar-menu a {
     text-align: center;
     padding: 15px;
-    font-size: 1rem;
+    font-size: 0.75rem;
   }
 
   .topBar-menu a:hover {
@@ -274,14 +274,14 @@ body {
 @media (max-width: 767px) {
   .menuToggle {
     display: block;
-    font-size: 2rem;
+    font-size: 1.75rem;
     padding: 15px;
   }
 }
 
 .logo {
   padding: 36px 0;
-  font-size: 1.5rem;
+  font-size: 1rem;
 }
 
 @media (max-width: 767px) {
@@ -303,7 +303,7 @@ body {
 .banner-text {
   position: absolute;
   color: #FFFFFF;
-  font-size: 2rem;
+  font-size: 1.75rem;
   left: 50px;
   bottom: 50px;
   font-weight: normal;
@@ -311,7 +311,7 @@ body {
 
 .section-title {
   text-align: center;
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   margin-bottom: 30px;
 }
 
@@ -334,7 +334,7 @@ body {
 
 .bedAdvantage-text {
   text-align: center;
-  font-size: 1.25rem;
+  font-size: 1rem;
 }
 
 .furniture-compare {
@@ -366,7 +366,7 @@ body {
 }
 
 .compare-table th {
-  font-size: 1.25rem;
+  font-size: 1rem;
 }
 
 .compare-table tr {
@@ -375,7 +375,7 @@ body {
 
 .compare-table tr td:first-child {
   text-align: left;
-  font-size: 1.25rem;
+  font-size: 1rem;
 }
 
 .compare-table .material-icons {
@@ -395,11 +395,11 @@ body {
   }
 
   .compare-table th {
-    font-size: 1rem;
+    font-size: 0.75rem;
   }
 
   .compare-table tr td:first-child {
-    font-size: 1rem;
+    font-size: 0.75rem;
   }
 }
 
@@ -599,11 +599,11 @@ body {
 }
 
 .transport-card .material-icons {
-  font-size: 50px;
+  font-size: 40px;
 }
 
 .transport-card h4 {
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: bold;
 }
 
@@ -667,7 +667,7 @@ body {
 
 .productCard a,
 .productCard h3 {
-  font-size: 1.25rem;
+  font-size: 1rem;
 }
 
 @media (max-width: 900px) {
@@ -692,11 +692,11 @@ body {
 }
 
 .originPrice {
-  font-size: 1.25rem;
+  font-size: 1rem;
 }
 
 .nowPrice {
-  font-size: 1.75rem;
+  font-size: 1.5rem;
 }
 
 .shoppingCart {
@@ -707,7 +707,7 @@ body {
 .shoppingCart-table {
   margin: 0 auto;
   border-collapse: collapse;
-  font-size: 1.25rem;
+  font-size: 1rem;
 }
 
 .shoppingCart-table th,
@@ -757,7 +757,7 @@ body {
   text-decoration: none;
   display: inline-block;
   padding: 10px;
-  font-size: 2rem;
+  font-size: 1.75rem;
   color: #000000;
 }
 
@@ -774,7 +774,7 @@ body {
   color: #000000;
   border: 1.3px solid #000000;
   border-radius: 5px;
-  font-size: 1.25rem;
+  font-size: 1rem;
 }
 
 .discardAllBtn:hover {
@@ -805,7 +805,7 @@ body {
   min-height: 38px;
   border: 1px solid #CED4DA;
   border-radius: 5px;
-  text-indent: 1rem;
+  text-indent: 0.75rem;
   margin-right: 10px;
 }
 
@@ -839,7 +839,7 @@ body {
   color: #FFFFFF;
   border: 0;
   cursor: pointer;
-  font-size: 1.25rem;
+  font-size: 1rem;
   margin: 50px auto 0;
   border-radius: 5px;
 }
