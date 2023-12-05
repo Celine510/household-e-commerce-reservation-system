@@ -599,7 +599,9 @@ body {
 }
 
 .transport-card .material-icons {
-  font-size: 40px;
+  font-size: 30px;
+  border: none;
+  font-weight: bold;
 }
 
 .transport-card h4 {

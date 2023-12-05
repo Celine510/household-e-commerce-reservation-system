@@ -4,10 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>household e-commerce reservation system</title>
-  <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.20/c3.min.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -26,6 +27,7 @@
         </ul>
       </div>
     </nav>
+
     <section class="wrap" id="bedAdvantage">
       <div class="banner">
         <h2 class="banner-text">窩窩家居<br>跟您一起品味生活</h2>
@@ -46,6 +48,7 @@
         </li>
       </ul>
     </section>
+
     <section class="furniture-compare">
       <div class="wrap">
         <h3 class="section-title">家具比較</h3>
@@ -93,6 +96,7 @@
         </div>
       </div>
     </section>
+
     <section class="recommendation" id="recommendation">
       <div class="wrap">
         <h3 class="section-title">好評推薦</h3>
@@ -234,6 +238,7 @@
         </div>
       </div>
     </section>
+
     <section class="transport" id="transport">
       <h3 class="section-title">運送方式</h3>
       <ul class="transport-intro">
@@ -275,15 +280,16 @@
         </li>
       </ul>
     </section>
+    
     <section class="wrap productDisplay">
       <select name="" class="productSelect">
-        <option value="全部" selected>全部</option>
+        <!-- <option value="全部" selected>全部</option>
         <option value="床架">床架</option>
         <option value="收納">收納</option>
-        <option value="窗簾">窗簾</option>
+        <option value="窗簾">窗簾</option> -->
       </select>
       <ul class="productWrap">
-        <li class="productCard">
+        <!-- <li class="productCard">
           <h4 class="productType">新品</h4>
           <img
             src="https://hexschool-api.s3.us-west-2.amazonaws.com/custom/dp6gW6u5hkUxxCuNi8RjbfgufygamNzdVHWb15lHZTxqZQs0gdDunQBS7F6M3MdegcQmKfLLoxHGgV3kYunUF37DNn6coPH6NqzZwRfhbsmEblpJQLqXLg4yCqUwP3IE.png"
@@ -362,14 +368,15 @@
           <h3>Antony 雙人床架／雙人加大</h3>
           <del class="originPrice">NT$18,000</del>
           <p class="nowPrice">NT$12,000</p>
-        </li>
+        </li> -->
       </ul>
     </section>
+    
     <section class="shoppingCart">
       <h3 class="section-title">我的購物車</h3>
       <div class="overflowWrap">
         <table class="shoppingCart-table">
-          <tr>
+          <!-- <tr>
             <th width="40%">品項</th>
             <th width="15%">單價</th>
             <th width="15%">數量</th>
@@ -402,45 +409,46 @@
               <p>總金額</p>
             </td>
             <td>NT$13,980</td>
-          </tr>
+          </tr> -->
         </table>
       </div>
     </section>
+
     <section class="orderInfo wrap" id="orderInfo">
       <h3 class="section-title">填寫預訂資料</h3>
       <form action="" class="orderInfo-form">
         <div class="orderInfo-formGroup">
           <label for="customerName" class="orderInfo-label">姓名</label>
           <div class="orderInfo-inputWrap">
-            <input type="text" class="orderInfo-input" id="customerName" placeholder="請輸入姓名" name="姓名">
-            <p class="orderInfo-message" data-message="姓名">必填</p>
+            <input type="text" class="orderInfo-input" id="customerName" placeholder="請輸入姓名" name="customerName">
+            <p class="orderInfo-message" data-message="customerName"></p>
           </div>
         </div>
         <div class="orderInfo-formGroup">
           <label for="customerPhone" class="orderInfo-label">電話</label>
           <div class="orderInfo-inputWrap">
-            <input type="tel" class="orderInfo-input" id="customerPhone" placeholder="請輸入電話" name="電話">
-            <p class="orderInfo-message" data-message="電話">必填</p>
+            <input type="tel" class="orderInfo-input" id="customerPhone" placeholder="請輸入10碼電話號碼" name="customerPhone">
+            <p class="orderInfo-message" data-message="customerPhone"></p>
           </div>
         </div>
         <div class="orderInfo-formGroup">
           <label for="customerEmail" class="orderInfo-label">Email</label>
           <div class="orderInfo-inputWrap">
-            <input type="email" class="orderInfo-input" id="customerEmail" placeholder="請輸入 Email" name="Email">
-            <p class="orderInfo-message" data-message="Email">必填</p>
+            <input type="email" class="orderInfo-input" id="customerEmail" placeholder="請輸入 Email" name="customerEmail">
+            <p class="orderInfo-message" data-message="customerEmail"></p>
           </div>
         </div>
         <div class="orderInfo-formGroup">
           <label for="customerAddress" class="orderInfo-label">寄送地址</label>
           <div class="orderInfo-inputWrap">
-            <input type="text" class="orderInfo-input" id="customerAddress" placeholder="請輸入寄送地址" name="寄送地址">
-            <p class="orderInfo-message" data-message="寄送地址">必填</p>
+            <input type="text" class="orderInfo-input" id="customerAddress" placeholder="請輸入寄送地址" name="customerAddress">
+            <p class="orderInfo-message" data-message="customerAddress"></p>
           </div>
         </div>
         <div class="orderInfo-formGroup">
-          <label for="tradeWay" class="orderInfo-label">交易方式</label>
+          <label for="payMethod" class="orderInfo-label">交易方式</label>
           <div class="orderInfo-inputWrap">
-            <select id="tradeWay" class="orderInfo-input" name="交易方式">
+            <select id="payMethod" class="orderInfo-input" name="payMethod">
               <option value="ATM" selected>ATM</option>
               <option value="信用卡">信用卡</option>
               <option value="超商付款">超商付款</option>
@@ -514,6 +522,8 @@
     </script>
   </body>
 
+  <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="main.js"></script>
   
 </body>
