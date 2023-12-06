@@ -1,26 +1,22 @@
-// *後台
-// 1. 抓訂單資料
-// 2. 刪除訂單
-// 3. 刪除全部訂單
-// 4. (圖表)顯示全產品類別營收比重，類別含三項，共有：床架、收納、窗簾
-// 5. (圖表)顯示全品項營收比重，類別含四項，篩選出前三名營收品項，其他 4~8 名都統整為「其它」
-
 const apiPath = 'celine510';
 const apiUrl = `https://livejs-api.hexschool.io/api/livejs/v1/admin/${apiPath}`;
 const token = 'Ph0fWA7kwJWpDtlQndQ2ApFhJaX2';
+const header = {headers: {'authorization': token}};
 let orderList = []; // 訂單列表
 
 // 取得訂單列表
 function getOrderList(){
-  axios.get(`${apiUrl}/orders`,{
-    headers: {
-      'authorization': token
-    }
-  })
+  axios.get(`${apiUrl}/orders`, header)
     .then(response => {
       // console.log(response);
       orderList = response.data.orders;
       renderOrderList(orderList);
+      if (orderList.length === 0){ // 無訂單時顯示
+        const sectionTitle = document.querySelectorAll('.section-title');
+        sectionTitle.forEach(item => item.innerHTML = '');
+        Swal.fire('沒有任何訂單要破產了啊啊啊');
+        return 
+      } 
       getCategoryRevenueChart(orderList);
       getProductRevenueChart(orderList);
     })
@@ -53,7 +49,7 @@ function renderOrderList(orderList){
       return item.title
     }).join('、');
     // 換算訂單日期
-    let date = new Date(item.createdAt);
+    let date = new Date(item.createdAt * 1000);
     
     str += `<tr>
               <td>${item.createdAt}</td>
@@ -68,7 +64,7 @@ function renderOrderList(orderList){
               </td>
               <td>${date.getFullYear()}/${date.getMonth()}/${date.getDay()}</td>
               <td class="orderStatus">
-                <a href="#">${paymentStatus}</a>
+                <a href="#" value="修改狀態">${paymentStatus}</a>
               </td>
               <td>
                 <input type="button" class="delSingleOrder-Btn" value="刪除" data-id="${item.id}">
@@ -77,57 +73,50 @@ function renderOrderList(orderList){
   });
 
   orderPageTable.innerHTML = str;
-  
 }
 
 // 刪除全部訂單
 const discardAllBtn = document.querySelector('.discardAllBtn');
 discardAllBtn.addEventListener('click', e => {
   e.preventDefault();
-  axios.delete(`${apiUrl}/orders`, {
-    headers: {
-      'authorization': token
-    }
-  })
+  axios.delete(`${apiUrl}/orders`, header)
     .then(response => {
-      console.log(response);
+      // console.log(response);
+      Swal.fire('已清除全部訂單');
       getOrderList();
     })
     .catch(err => {
-      console.log(err);
+      // console.log(err);
     })
 })
 
-// 刪除訂單
+// 刪除單筆訂單
 orderPageTable.addEventListener('click',e => {
   e.preventDefault();
   if(e.target.value !== '刪除')return;
   // 訂單id
   const itemId = e.target.getAttribute('data-id');
   
-  axios.delete(`${apiUrl}/orders/${itemId}`, {
-    headers: {
-      'authorization': token
-    }
-  })
+  axios.delete(`${apiUrl}/orders/${itemId}`, header)
   .then(response => {
-    console.log(response);
+    // console.log(response);
+    Swal.fire('已刪除此訂單');
     getOrderList();
   })
   .catch(err => {
-    console.log(err);
+    // console.log(err);
   })
 });
 
 // (圖表)全產品類別營收比重
 function getCategoryRevenueChart(orderList){
-  let data = {}//{'床架': 0, '收納': 0, '窗簾': 0};
+  // 存放類別與營收
+  let data = {};
 
   // 取得類別營收
   orderList.forEach(item => {
     item.products.forEach(product => {
       data[product.category] ? data[product.category] += product.price : data[product.category] = product.price;
-      // data[product.category] += product.price;
     });
   });
 
