@@ -15,7 +15,7 @@ function getProductList(){
       getProductSelectCategory();
     })
     .catch(err => {
-      console.log(err);
+      // console.log(err);
     })
 };
 
@@ -88,11 +88,11 @@ productWrap.addEventListener('click',e => {
       }
     })
     .then(response => {
-      console.log(response);
+      // console.log(response);
       getCartList();
     })
     .catch(err => {
-      console.log(err);
+      // console.log(err);
     })
 });
 
@@ -106,7 +106,7 @@ function getCartList(){
       renderCartList(cartList);
     })
     .catch(err => {
-      console.log(err);
+      // console.log(err);
     })
 };
 
@@ -164,11 +164,11 @@ function renderCartList(list){
     e.preventDefault();
     axios.delete(`${apiUrl}/carts`)
       .then(response => {
-        console.log(response);
+        // console.log(response);
         getCartList();
       })
       .catch(err => {
-        console.log(err);
+        // console.log(err);
       })
   })
   // (我的購物車)各別刪除
@@ -178,11 +178,11 @@ function renderCartList(list){
     const id = e.target.getAttribute('data-id');
     axios.delete(`${apiUrl}/carts/${id}`)
       .then(response => {
-        console.log(response);
+        // console.log(response);
         getCartList();
       })
       .catch(err => {
-        console.log(err);
+        // console.log(err);
       })
   })
 };
@@ -191,7 +191,6 @@ function renderCartList(list){
 const orderInfoForm = document.querySelector('.orderInfo-form');
 orderInfoForm.addEventListener('submit',e => {
   e.preventDefault();
-  console.log(123);
 
   // 表單驗證
   // 驗證限制條件
@@ -249,12 +248,12 @@ orderInfoForm.addEventListener('submit',e => {
   // 送出購買訂單
   axios.post(`${apiUrl}/orders`,data)
     .then(response => {
-      console.log(response);
+      Swal.fire('訂單已送出');
       getCartList();
       orderInfoForm.reset();
     })
     .catch(err => {
-      console.log(err);
+      // console.log(err);
     })
 });
 

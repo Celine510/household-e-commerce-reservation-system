@@ -23,7 +23,7 @@ function getOrderList(){
     .catch(err => {
       console.log(err);
     })
-}
+};
 
 // 訂單渲染到畫面上
 const orderPageTable = document.querySelector('.orderPage-table');
@@ -73,7 +73,7 @@ function renderOrderList(orderList){
   });
 
   orderPageTable.innerHTML = str;
-}
+};
 
 // 刪除全部訂單
 const discardAllBtn = document.querySelector('.discardAllBtn');
@@ -88,7 +88,7 @@ discardAllBtn.addEventListener('click', e => {
     .catch(err => {
       // console.log(err);
     })
-})
+});
 
 // 刪除單筆訂單
 orderPageTable.addEventListener('click',e => {
