@@ -18,10 +18,11 @@ function getOrderList(){
     }
   })
     .then(response => {
-      console.log(response);
+      // console.log(response);
       orderList = response.data.orders;
       renderOrderList(orderList);
-      getCategoryRevenue(orderList);
+      getCategoryRevenueChart(orderList);
+      getProductRevenueChart(orderList);
     })
     .catch(err => {
       console.log(err);
@@ -44,7 +45,7 @@ function renderOrderList(orderList){
           </tr>
         </thead>`;
   orderList.forEach(item => {
-    console.log(item);
+    // console.log(item);
     // 判斷訂單狀態
     let paymentStatus = item.paid === true? '已處理' : '未處理';
     // 取出訂單品項名稱
@@ -118,18 +119,84 @@ orderPageTable.addEventListener('click',e => {
   })
 });
 
-function init(){
+// (圖表)全產品類別營收比重
+function getCategoryRevenueChart(orderList){
+  let data = {}//{'床架': 0, '收納': 0, '窗簾': 0};
+
+  // 取得類別營收
+  orderList.forEach(item => {
+    item.products.forEach(product => {
+      data[product.category] ? data[product.category] += product.price : data[product.category] = product.price;
+      // data[product.category] += product.price;
+    });
+  });
+
+  // 生成圖表資料格式
+  let ary = Object.keys(data).map(key => {
+    return [key, data[key]]
+  });
+
+  // 生成圖表
+  var chart = c3.generate({
+    bindto: `#chart1`,
+    data: {
+      columns: ary,
+      type: 'pie',
+    },
+    pie: {
+      label: {
+        format: function (value, ratio, id) {
+          return d3.format(".0%")(ratio);
+        }
+      }
+    },
+    color: {
+      pattern: ['#B7B2EC', '#8C70F2', '#6A33F8', '#28048B']
+    }
+  });
+};
+
+// (圖表)全品項營收比重
+function getProductRevenueChart(orderList) {
+  // 取得全品項與營收
+  let data = {};
+  orderList.forEach(item => {
+    item.products.forEach(product => data[product.title] = product.price);
+  });
+  
+  // 物件轉陣列
+  let ary = Object.keys(data).map(key => [key, data[key]])
+    .sort((a, b) => b[1] - a[1]); // 營收排序
+  
+  // 其他項目總額
+  let otherItemPrice = ary.slice(3).reduce((sum, item) => sum += item[1], 0);
+
+  ary.splice(3);// 刪除第三項之後的項目
+  ary.push(['其他', otherItemPrice]); // 新增'其他'項目
+  
+  // 生成圖表
+  var chart = c3.generate({
+    bindto: `#chart2`,
+    data: {
+      columns: ary,
+      type: 'pie',
+    },
+    pie: {
+      label: {
+        format: function (value, ratio, id) {
+          return d3.format(".0%")(ratio);
+        }
+      }
+    },
+    color: {
+      pattern: ['#B7B2EC', '#8C70F2', '#6A33F8', '#28048B']
+    }
+  });
+};
+
+// 初始化
+function init() {
   getOrderList();
 };
 
 init();
-
-
-// (圖表)顯示全產品類別營收比重，類別含三項，共有：床架、收納、窗簾
-function getCategoryRevenue(orderList){
-  
-}
-// (圖表)顯示全品項營收比重，類別含四項，篩選出前三名營收品項，其他 4~8 名都統整為「其它」
-function getProductRevenue(orderList) {
-
-}
